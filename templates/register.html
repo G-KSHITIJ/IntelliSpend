@@ -1,0 +1,108 @@
+{% extends "auth_base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<div class="login-page register-page">
+
+    <!-- LEFT SIDE -->
+
+    <div class="left-panel">
+
+        <div class="hero-box register-hero">
+
+            <h1>
+                Build<br>
+                Better<br>
+                Financial<br>
+                Habits
+            </h1>
+
+            <p>
+                Join IntelliSpend and start tracking expenses,
+                controlling budgets, and understanding your
+                spending patterns smarter than ever.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right-panel">
+
+        <div class="login-card register-card">
+
+            <h2>
+                Create Account 🚀
+            </h2>
+
+            <p class="subtitle">
+                Start managing your finances today
+            </p>
+
+            <form method="POST">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Choose username"
+                    required
+                >
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create password"
+                    required
+                >
+
+                <label>Confirm Password</label>
+
+                <input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm password"
+                    required
+                >
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

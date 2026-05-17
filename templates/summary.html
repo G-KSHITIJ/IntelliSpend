@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}
+Summary
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">
+    📊 Monthly Summary
+</h1>
+
+<!-- ================= CARDS ================= -->
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Expenses</h3>
+        <h1>₹ {{ total }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Highest Category</h3>
+        <h1>{{ highest_category }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Avg Daily Spending</h3>
+        <h1>₹ {{ avg_daily|round(2) }}</h1>
+    </div>
+</div>
+
+<!-- ================= EMPTY STATE ================= -->
+{% if category_summary %}
+<!-- ================= CHART ================= -->
+
+<div class="chart-box">
+    <h2>📦 Expense Distribution</h2>
+    <canvas id="pieChart"></canvas>
+</div>
+
+<!-- ================= CATEGORY BREAKDOWN ================= -->
+
+<div class="category-box">
+    <h2>📋 Category Breakdown</h2>
+    <div class="category-list">
+        {% for category, amount in category_summary.items() %}
+            <div class="category-item">
+                <strong>{{ category }}</strong>
+                <span>₹ {{ amount }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% else %}
+
+<div class="box empty-state">
+    <h2>📊</h2>
+    <h3>No summary data available</h3>
+    <p>
+        Add some expenses this month to generate insights.
+    </p>
+
+</div>
+
+{% endif %}
+{% endblock %}
+{% block extra_js %}
+{% if category_summary %}
+
+<script>
+
+const categories = {{ category_summary.keys()|list|tojson }};
+const amounts = {{ category_summary.values()|list|tojson }};
+
+new Chart(document.getElementById("pieChart"), {
+
+    type: 'pie',
+
+    data: {
+        labels: categories,
+        datasets: [{
+            data: amounts,
+            backgroundColor: [
+                '#3b82f6',
+                '#22c55e',
+                '#f59e0b',
+                '#ef4444',
+                '#8b5cf6',
+                '#06b6d4'
+            ],
+            borderWidth: 3,
+            borderColor: "#ffffff"
+        }]
+    },
+
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: "gray",
+                    font: {
+                        size: 14
+                    }
+                }
+            }
+        }
+    }
+
+});
+
+</script>
+{% endif %}
+{% endblock %}

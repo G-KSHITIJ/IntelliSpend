@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        IntelliSpend
+        {% endblock %}
+    </title>
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- EXTRA PAGE CSS -->
+    {% block extra_css %}
+    {% endblock %}
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <a href="/" class="logo-link">
+            <h2 class="logo">
+                IntelliSpend
+            </h2>
+        </a>
+
+        <div class="sidebar-links">
+
+            <a href="/dashboard">
+                📊 Transaction
+            </a>
+
+            <a href="/summary">
+                🧾 Summary
+            </a>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+        <button onclick="toggleDarkMode()" class="dark-btn">
+            🌙 Dark Mode
+        </button>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-content">
+
+        <!-- FLASH MESSAGE -->
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+
+                    <div class="flash-message">
+                        {{ msg }}
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+</html>

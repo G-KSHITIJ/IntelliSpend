@@ -1,0 +1,237 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+
+    display:flex;
+
+    color:white;
+
+    overflow-x:hidden;
+
+    transition:0.3s;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(37,99,235,0.25) 0%,
+        transparent 28%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        rgba(124,58,237,0.22) 0%,
+        transparent 30%
+    ),
+    linear-gradient(
+        135deg,
+        #020617,
+        #071126,
+        #020617
+    );
+    background-attachment:fixed;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar{
+    width:240px;
+    min-height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    padding:26px 20px;
+    display:flex;
+    flex-direction:column;
+    background:linear-gradient(180deg,rgba(100,100,200,0.95),rgba(2,6,23,0.98));
+    backdrop-filter:blur(20px);
+    border-right:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 10px 40px rgba(0,0,0,0.45);
+    overflow:hidden;
+    border-top-right-radius:24px;
+    border-bottom-right-radius:24px;
+}
+
+.dark-btn{
+    margin-top:auto;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:700;
+}
+.logo{
+    margin-bottom:8px;
+}
+
+.logo-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:white;
+    margin-bottom:25px;
+}
+
+.logo-icon{
+    font-size:36px;
+}
+
+.sidebar{
+    border-top-right-radius:24px;
+    border-bottom-right-radius:24px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:12px;
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    font-weight:500;
+    margin:8px 0;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.06);
+    transform:translateX(4px);
+    color:#dbe4ff;
+}
+.sidebar-links{
+    margin-top:10px;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:30px;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+}
+/* ================= FLASH ================= */
+
+.flash-message{
+    background:#22c55e;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:20px;
+    color:white;
+}
+
+/* ================= BUTTON ================= */
+
+button{
+    cursor:pointer;
+    border:none;
+}
+
+/* ================= DARK BUTTON ================= */
+
+.dark-btn{
+    width:100%;
+    margin-top:40px;
+    padding:14px;
+    border:none;
+    border-radius:16px;
+    background:white;
+    color:black;
+    font-size:16px;
+    font-weight:500;
+    transition:0.3s;
+}
+.dark-btn:hover{
+
+    background:rgba(255,255,255,0.12);
+    transform:translateY(-2px);
+}
+/* ================= LIGHT MODE ================= */
+
+.light-mode{
+    background:#f1f5f9;
+    color:black;
+}
+
+.light-mode .sidebar{
+    background:#163e92;
+}
+
+.light-mode .main-content{
+    background:#f1f5f9;
+    color:black;
+}
+
+.light-mode .card,
+.light-mode .box,
+.light-mode .table-container,
+.light-mode .chart-box,
+.light-mode .category-box{
+    background:white;
+    color:black;
+}
+
+.light-mode table{
+    background:white;
+    color:black;
+}
+
+.light-mode th{
+    background:#f3f4f6;
+}
+
+.light-mode input{
+    background:white;
+    color:black;
+}
+
+.light-mode .expense-table td{
+    color:black;
+}
+body::before{
+
+    content:'';
+
+    position:fixed;
+
+    width:400px;
+    height:400px;
+
+    background:rgba(59,130,246,0.12);
+
+    filter:blur(120px);
+
+    top:-120px;
+    left:-120px;
+
+    z-index:-1;
+}
+
+body::after{
+
+    content:'';
+
+    position:fixed;
+
+    width:350px;
+    height:350px;
+
+    background:rgba(124,58,237,0.14);
+
+    filter:blur(120px);
+
+    bottom:-120px;
+    right:-120px;
+
+    z-index:-1;
+}

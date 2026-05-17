@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">All Expenses</h1>
+
+{% if expenses %}
+
+<div class="table-container">
+
+    <table class="expense-table">
+
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for expense in expenses %}
+
+            <tr>
+
+                <td class="amount">
+                    ₹{{ expense[1] }}
+                </td>
+
+                <td>
+
+                    <span class="
+                        category-badge
+
+                        {% if expense[2]|lower == 'food' %}
+                            food
+
+                        {% elif expense[2]|lower == 'travel' %}
+                            travel
+
+                        {% elif expense[2]|lower == 'shopping' %}
+                            shopping
+
+                        {% else %}
+                            other
+                        {% endif %}
+                    ">
+
+                        {{ expense[2] }}
+
+                    </span>
+
+                </td>
+
+                <td class="date">
+                    {{ expense[3] }}
+                </td>
+
+                <td>
+
+                    <a
+                        href="/delete/{{ expense[0] }}"
+                        class="delete-btn"
+                        onclick="return confirm('Delete expense?')"
+                    >
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% else %}
+
+<div class="box empty-state">
+
+    <h2>📭</h2>
+    <h3>No expenses added yet</h3>
+    <p>
+        Start tracking expenses to see analytics here.
+    </p>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
