@@ -130,24 +130,22 @@ def home():
 
 @app.route('/add', methods=['POST'])
 def add():
+
     if 'user_id' not in session:
         return redirect('/login')
 
     try:
         amount = float(request.form.get("amount"))
-
     except:
         flash("Invalid amount!")
         return redirect('/')
 
     category = request.form.get("category", "")
+    date = request.form.get("date")
 
-    # CLEAN CATEGORY
     category = category.strip().title()
-    # Remove extra spaces
     category = " ".join(category.split())
 
-    # VALIDATION
     if amount <= 0:
         flash("Amount must be positive!")
         return redirect('/')
@@ -161,12 +159,16 @@ def add():
         return redirect('/')
 
     if not category.replace(" ", "").isalnum():
-        flash("Only letters and numbers allowed!")
-        return redirect('/')
-
-    if not category.replace(" ", "").isalnum():
         flash("Category should only contain letters and numbers")
         return redirect('/')
+
+    user_id = session.get('user_id')
+
+    add_expenses(amount, category, date, user_id)
+
+    flash("Expense added successfully!")
+
+    return redirect('/')
 
 # ================== REGISTER ==================
 @app.route('/register', methods=['GET', 'POST'])
@@ -449,8 +451,7 @@ def summary():
 init_db()
 
 if __name__ == "__main__":
-    app.run()
-
+    app.run(host="0.0.0.0", port=5000)
 
 
 
