@@ -7,8 +7,12 @@
 
 body{
 
+    display:flex;
+
     color:white;
+
     overflow-x:hidden;
+
     transition:0.3s;
 
     background:
@@ -232,11 +236,3 @@ body::after{
     z-index:-1;
 }
 
-/* ================= FOOTER ================= */
-.footer{
-    margin-top:auto;
-    padding:20px 0 10px;
-    text-align:right;
-    color:rgba(255,255,255,0.75);
-    font-size:14px;
-}

@@ -232,68 +232,52 @@ new Chart(document.getElementById("barChart"), {
 
         datasets:[{
             label:"Expenses",
-            data:Object.values(dailyData),
-
-            backgroundColor:[
-                '#3b82f6',
-                '#22c55e',
-                '#f59e0b',
-                '#ef4444',
-                '#8b5cf6',
-                '#06b6d4'
-            ],
-
-            borderRadius:12,
-
-            borderSkipped:false
+            data:Object.values(dailyData)
         }]
-    },
-
-    options:{
-
-        responsive:true,
-
-        animation:{
-            duration:1800,
-
-            easing:'easeOutBounce'
-        },
-
-        plugins:{
-            legend:{
-                labels:{
-                    color:'white'
-                }
-            }
-        },
-
-        scales:{
-
-            x:{
-                ticks:{
-                    color:'white'
-                },
-
-                grid:{
-                    color:'rgba(255,255,255,0.05)'
-                }
-            },
-
-            y:{
-                ticks:{
-                    color:'white'
-                },
-
-                grid:{
-                    color:'rgba(255,255,255,0.05)'
-                }
-            }
-
-        }
-
     }
 
 });
+
+const buttons = document.querySelectorAll(".category-btn");
+
+const hiddenInput = document.getElementById("selectedCategory");
+
+const customInput = document.getElementById("customCategory");
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        buttons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        const cleanText =
+            button.innerText
+            .split(" ")
+            .slice(1)
+            .join(" ");
+
+        hiddenInput.value = cleanText;
+
+        customInput.value = "";
+
+    });
+
+});
+
+customInput.addEventListener("input", () => {
+
+    buttons.forEach(btn =>
+        btn.classList.remove("active")
+    );
+
+    hiddenInput.value = customInput.value;
+
+});
+
 </script>
 
 {% endblock %}
