@@ -163,7 +163,7 @@ button{
     color:black;
 }
 
-.light-mode .sidebar{
+.light-mode.sidebar{
     background:#163e92;
 }
 
