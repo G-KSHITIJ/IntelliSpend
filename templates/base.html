@@ -15,12 +15,16 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='favicon.png') }}">
     <!-- EXTRA PAGE CSS -->
     {% block extra_css %}
     {% endblock %}
 
     <!-- CHART JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
