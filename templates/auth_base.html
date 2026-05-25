@@ -20,22 +20,27 @@
 
     <div class="auth-container">
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for msg in messages %}
-
-                    <div class="flash-message">
-                        {{ msg }}
-                    </div>
-
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
         {% block content %}
         {% endblock %}
 
     </div>
+
+    <script>
+
+    setTimeout(() => {
+
+        const flash = document.querySelector(".flash-message");
+
+        if(flash){
+            flash.style.opacity = "0";
+            flash.style.transform = "translateY(-10px)";
+            setTimeout(() => {
+                flash.remove();
+            },300);
+        }
+    },3000);
+
+    </script>
 
 </body>
 </html>

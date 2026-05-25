@@ -7,13 +7,10 @@ IntelliSpend/login
 {% block content %}
 
 <div class="login-page">
-
     <!-- LEFT SIDE -->
-
     <div class="left-panel">
 
         <div class="hero-box">
-
             <h1>
                 Track<br>
                 Your<br>
@@ -28,36 +25,38 @@ IntelliSpend/login
                 and stay financially smarter —
                 without messy spreadsheets.
             </p>
-
         </div>
-
     </div>
 
     <!-- RIGHT SIDE -->
-
     <div class="right-panel">
-
         <div class="login-card">
-
             <h2>
                 Welcome To IntelliSpend 👋
             </h2>
-
             <p class="subtitle">
                 Login to continue managing your finances
             </p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
 
+                        <div class="flash-message">
+                            {{ msg }}
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <form method="POST">
 
                 <label>Username</label>
-
                 <input
                     type="text"
                     name="username"
                     placeholder="Enter username"
                     required
                 >
-
                 <label>Password</label>
 
                 <input
@@ -80,13 +79,9 @@ IntelliSpend/login
                 <a href="/register">
                     Register
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 {% endblock %}
